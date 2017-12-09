@@ -33,19 +33,20 @@ order_id = raw_input("Enter Order ID: ")
 
 sig['request'] = "/v1/" + url_extension
 sig['nonce'] = generate_nonce(25)
-sig['order_id'] = order_id
+sig['symbol'] = "btcusd"
+
 
 #api SECRET for security purposes, have user input last couple characters of key
-# print sig['nonce']
+print sig['nonce']
 
 jsonSig = json.dumps(sig)
 
 b64 = base64.b64encode(jsonSig)
 
-# print jsonSig
+print jsonSig
 signature = hmac.new(gemini_api_secret, b64, hashlib.sha384).hexdigest()
 
-# print(signature)
+print(signature)
 
 
 # headers = {}
@@ -67,7 +68,7 @@ headers = {
     'X-GEMINI-SIGNATURE': signature,
     'Cache-Control': "no-cache"
     }
-# print headers
+print headers
 
 response = requests.request("POST", url, headers=headers)
 
