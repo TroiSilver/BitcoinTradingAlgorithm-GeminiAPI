@@ -30,6 +30,8 @@ json_string2 = json.dumps({'request': '/v1/order/status', 'nonce': 123456, 'orde
 print json_string2
 print base64.b64encode(json_string2)
 print base64.b64encode(json_string)
+json_string2 = base64.b64encode(json_string2)
+print base64.b64decode(json_string2)
 print b64
 
 signature = hmac.new("1234abcd", b64, hashlib.sha384).hexdigest()
